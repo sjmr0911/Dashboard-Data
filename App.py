@@ -4,7 +4,7 @@ import pandas as pd
 # Cargar los datos
 @st.cache_data
 def load_data():
-    return pd.read_csv("https://github.com/sjmr0911/Dashboard-Data/blob/main/Extended_Employee_Performance_and_Productivity_Data.csv")
+    return pd.read_csv("https://raw.githubusercontent.com/sjmr0911/Dashboard-Data/refs/heads/main/Extended_Employee_Performance_and_Productivity_Data.csv")
 
 data = load_data()
 
