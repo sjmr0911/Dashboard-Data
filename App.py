@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 # Cargar los datos
 @st.cache
 def load_data():
-    return pd.read_csv("https://raw.githubusercontent.com/your-repo/your-dataset-path/main/Extended_Employee_Performance_and_Productivity_Data.csv")
+    return pd.read_csv("https://github.com/sjmr0911/Dashboard-Data/blob/main/Extended_Employee_Performance_and_Productivity_Data.csv")
 
 data = load_data()
 
