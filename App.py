@@ -1,9 +1,8 @@
 import streamlit as st
 import pandas as pd
-import plotly.express as px
 
 # Cargar los datos
-@st.cache
+@st.cache_data
 def load_data():
     return pd.read_csv("https://github.com/sjmr0911/Dashboard-Data/blob/main/Extended_Employee_Performance_and_Productivity_Data.csv")
 
@@ -37,43 +36,15 @@ overtime_by_department = filtered_data.groupby("Department")["Overtime_Hours"].m
 st.header("KPIs Generales")
 st.metric(label="Tasa de Rotación (%)", value=f"{turnover_rate:.2f}")
 
-# Visualizaciones
+# Visualizaciones con funciones nativas de Streamlit
 st.subheader("Satisfacción Promedio por Departamento")
-fig = px.bar(
-    satisfaction_by_department,
-    x=satisfaction_by_department.index,
-    y=satisfaction_by_department.values,
-    labels={"x": "Departamento", "y": "Puntaje Promedio de Satisfacción"},
-    title="Satisfacción Promedio por Departamento",
-)
-st.plotly_chart(fig)
+st.bar_chart(satisfaction_by_department)
 
 st.subheader("Productividad Promedio por Departamento")
-fig = px.bar(
-    productivity_by_department,
-    x=productivity_by_department.index,
-    y=productivity_by_department.values,
-    labels={"x": "Departamento", "y": "Proyectos/Hora Trabajada"},
-    title="Productividad Promedio por Departamento",
-)
-st.plotly_chart(fig)
+st.bar_chart(productivity_by_department)
 
 st.subheader("Costos Laborales Mensuales por Departamento ($USD)")
-fig = px.bar(
-    labor_cost_by_department,
-    x=labor_cost_by_department.index,
-    y=labor_cost_by_department.values,
-    labels={"x": "Departamento", "y": "Costos ($USD)"},
-    title="Costos Laborales Mensuales por Departamento",
-)
-st.plotly_chart(fig)
+st.bar_chart(labor_cost_by_department)
 
 st.subheader("Horas Extra Promedio por Departamento")
-fig = px.bar(
-    overtime_by_department,
-    x=overtime_by_department.index,
-    y=overtime_by_department.values,
-    labels={"x": "Departamento", "y": "Horas Promedio"},
-    title="Horas Extra Promedio por Departamento",
-)
-st.plotly_chart(fig)
+st.bar_chart(overtime_by_department)
