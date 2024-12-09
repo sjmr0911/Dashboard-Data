@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
+import plotly.express as px
 
 # Cargar los datos
 @st.cache
@@ -39,33 +39,41 @@ st.metric(label="Tasa de Rotación (%)", value=f"{turnover_rate:.2f}")
 
 # Visualizaciones
 st.subheader("Satisfacción Promedio por Departamento")
-fig, ax = plt.subplots()
-satisfaction_by_department.plot(kind="bar", color="teal", alpha=0.7, ax=ax)
-ax.set_ylabel("Puntaje Promedio de Satisfacción")
-ax.set_xlabel("Departamento")
-ax.set_title("Satisfacción Promedio por Departamento")
-st.pyplot(fig)
+fig = px.bar(
+    satisfaction_by_department,
+    x=satisfaction_by_department.index,
+    y=satisfaction_by_department.values,
+    labels={"x": "Departamento", "y": "Puntaje Promedio de Satisfacción"},
+    title="Satisfacción Promedio por Departamento",
+)
+st.plotly_chart(fig)
 
 st.subheader("Productividad Promedio por Departamento")
-fig, ax = plt.subplots()
-productivity_by_department.plot(kind="bar", color="orange", alpha=0.7, ax=ax)
-ax.set_ylabel("Proyectos/Hora Trabajada")
-ax.set_xlabel("Departamento")
-ax.set_title("Productividad Promedio por Departamento")
-st.pyplot(fig)
+fig = px.bar(
+    productivity_by_department,
+    x=productivity_by_department.index,
+    y=productivity_by_department.values,
+    labels={"x": "Departamento", "y": "Proyectos/Hora Trabajada"},
+    title="Productividad Promedio por Departamento",
+)
+st.plotly_chart(fig)
 
 st.subheader("Costos Laborales Mensuales por Departamento ($USD)")
-fig, ax = plt.subplots()
-labor_cost_by_department.plot(kind="bar", color="green", alpha=0.7, ax=ax)
-ax.set_ylabel("Costos ($USD)")
-ax.set_xlabel("Departamento")
-ax.set_title("Costos Laborales Mensuales por Departamento")
-st.pyplot(fig)
+fig = px.bar(
+    labor_cost_by_department,
+    x=labor_cost_by_department.index,
+    y=labor_cost_by_department.values,
+    labels={"x": "Departamento", "y": "Costos ($USD)"},
+    title="Costos Laborales Mensuales por Departamento",
+)
+st.plotly_chart(fig)
 
 st.subheader("Horas Extra Promedio por Departamento")
-fig, ax = plt.subplots()
-overtime_by_department.plot(kind="bar", color="purple", alpha=0.7, ax=ax)
-ax.set_ylabel("Horas Promedio")
-ax.set_xlabel("Departamento")
-ax.set_title("Horas Extra Promedio por Departamento")
-st.pyplot(fig)
+fig = px.bar(
+    overtime_by_department,
+    x=overtime_by_department.index,
+    y=overtime_by_department.values,
+    labels={"x": "Departamento", "y": "Horas Promedio"},
+    title="Horas Extra Promedio por Departamento",
+)
+st.plotly_chart(fig)
